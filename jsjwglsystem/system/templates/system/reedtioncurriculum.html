@@ -1,0 +1,606 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<title>Flat Admin V.3 - Free flat-design bootstrap administrator templates</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'media/css/base.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/vendor.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/flat-admin.css' %}">
+
+	<!-- Theme -->
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/blue-sky.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/blue.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/red.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'media/css/yellow.css' %}">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_1347375_rw5tk45yi4.css">
+	<script type='text/javascript' src="{% static 'media/js/jquery.js' %}"></script>
+	<script type='text/javascript' src="{% static 'media/js/vendor.js' %}"></script>
+	<script type='text/javascript' src="{% static 'media/js/app.js' %}"></script>
+
+	</head>
+
+	<style>
+		table,table tr,table tr td{
+			font-size: 18px;
+			text-align: center;
+		}
+		.option{
+			margin-top: 24px;
+			width: 500px;
+			display: flex;
+			justify-content: space-around;
+		}
+		#submit{
+			width: 100px;
+			border: 1px solid rgb(85, 85, 85);
+			border-radius: 10px;
+			background-color: #29C75F;
+			padding: 4px;
+		}
+		a{
+			color: #000;
+		}
+		a:hover{
+			color: #000;
+		}
+		#back{
+			width: 100px;
+			border: 1px solid rgb(85, 85, 85);
+			border-radius: 10px;
+			background-color: #C1C1C1;
+			padding: 4px;
+		}
+		.seoption{
+			width: 1000px;
+			height: 32px;
+			display: flex;
+			line-height: 28px;
+		}
+		.deoption{
+			width: 100px;
+			height: 28px;
+			background-color: #29C75F;
+			color: #fff;
+			margin-right: 16px;
+			text-align: center;
+			line-height: 28px;
+			border-radius: 12px;
+		}
+	</style>
+	<body>
+	<div class="app app-default">
+
+	<aside class="app-sidebar" id="sidebar">
+	<div class="sidebar-header">
+		<a class="sidebar-brand" href="#"><span class="highlight">教务</span>管理系统</a>
+		<button type="button" class="sidebar-toggle">
+		<i class="fa fa-times"></i>
+		</button>
+	</div>
+	<div class="sidebar-menu">
+			<ul class="sidebar-nav">
+			<li class="@@menu.messaging">
+				<a href="/">
+				<div class="icon">
+					<i class="iconfont icon-home" style="font-size: 40px"></i>
+				</div>
+				<div class="title">主页</div>
+				</a>
+			</li>
+			<li class="@@menu.messaging">
+				<a href="/upload/">
+				<div class="icon">
+					<i class="iconfont icon-upload" style="font-size: 40px"></i>
+				</div>
+				<div class="title">上传文件</div>
+				</a>
+			</li>
+			<li class="@@menu.messaging">
+				<a href="/Filelibrary/">
+					<div class="icon">
+						<i class="iconfont icon-folder" style="font-size: 40px"></i>
+					</div>
+					<div class="title">文件库</div>
+				</a>
+			</li>
+			<li class="@@menu.messaging">
+				<a href="/message/">
+					<div class="icon">
+						<i class="iconfont icon-message" style="font-size: 40px"></i>
+					</div>
+					<div class="title">留言</div>
+				</a>
+			</li>
+			<li class="active">
+				<a href="/Mycurriculum/">
+					<div class="icon">
+						<i class="iconfont icon-file" style="font-size: 40px"></i>
+					</div>
+					<div class="title">课程表</div>
+				</a>
+			</li>
+			<li class="@@menu.messaging">
+				<a href="/notice/">
+					<div class="icon">
+						<i class="iconfont icon-mail" style="font-size: 40px"></i>
+					</div>
+					<div class="title">通知</div>
+				</a>
+			</li>
+			<li class="@@menu.messaging">
+				<a href="/news/">
+					<div class="icon">
+						<i class="iconfont icon-browser" style="font-size: 40px"></i>
+					</div>
+					<div class="title">新闻</div>
+				</a>
+			</li>
+			</ul>
+		</div>
+	<div class="sidebar-footer">
+		<ul class="menu">
+		<li>
+			<a href="/" class="dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-cogs" aria-hidden="true"></i>
+			</a>
+		</li>
+		<li><a href="#"><span class="flag-icon flag-icon-th flag-icon-squared"></span></a></li>
+		</ul>
+	</div>
+	</aside>
+
+	<script type="text/ng-template" id="sidebar-dropdown.tpl.html">
+	<div class="dropdown-background">
+		<div class="bg"></div>
+	</div>
+	<div class="dropdown-container">
+		{{list}}
+	</div>
+	</script>
+	<div class="app-container">
+
+			<nav class="navbar navbar-default" id="navbar">
+					<div class="container-fluid">
+						<div class="navbar-collapse collapse in">
+						<ul class="nav navbar-nav navbar-mobile">
+							<li>
+							<button type="button" class="sidebar-toggle">
+								<i class="fa fa-bars"></i>
+							</button>
+							</li>
+							<li class="logo">
+							<a class="navbar-brand" href="#"><span class="highlight">教务</span>管理平台</a>
+							</li>
+							<li>
+							<button type="button" class="navbar-toggle">
+								<img class="profile-img" src="">
+							</button>
+							</li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							{% if username == '' and is_staff == False %}
+							<li><a href="/login">登陆</a></li>
+							<li><a href="/register">注册</a></li>
+							{% elif is_staff == True %}
+							<li class="dropdown profile">
+								<a href="/xadmin">{{ username }}</a>
+								<div class="dropdown-menu">
+									<div class="profile-info">
+										<h4 class="username">{{ username }}</h4>
+									</div>
+									<ul class="action">
+										<li>
+											<a href="#">Profile</a>
+										</li>
+										<li>
+											<a href="#"><span class="badge badge-danger pull-right">5</span>My Inbox</a>
+										</li>
+										<li>
+											<a href="#">Setting</a>
+										</li>
+										<li>
+											<a href="/loginout">退出登陆</a>
+										</li>
+									</ul>
+									</div>
+							</li>
+				
+							{% elif is_staff == False %}
+							<li class="dropdown profile">
+								<a href="/personinfo/">{{ username }}</a>
+								<div class="dropdown-menu">
+									<div class="profile-info">
+										<h4 class="username">{{ username }}</h4>
+									</div>
+									<ul class="action">
+										<li>
+											<a href="#">Profile</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="badge badge-danger pull-right">5</span>My Inbox</a>
+										</li>
+										<li>
+											<a href="#">Setting</a>
+										</li>
+										<li>
+											<a href="/loginout">退出登陆</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+									
+							<li class="dropdown notification">
+								<a href="/news/" class="dropdown-toggle">
+									<div class="icon">
+										<i class="iconfont icon-browser" style="font-size: 32px"></i>
+									</div>
+									<div class="title">New Orders</div>
+									<div class="count">{{ newcount }}</div>
+								</a>
+								<div class="dropdown-menu">
+									<ul>
+										 
+										<li class="dropdown-header">最新新闻</li>
+										<li class="dropdown-empty">{{ somenew.news_content }}</li>
+										<li class="dropdown-footer">
+											<a href="/news/">查看全部新闻</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+				
+							<li class="dropdown notification warning">
+								<a href="/notice/" class="dropdown-toggle">
+									<div class="icon">
+										<i class="iconfont icon-mail" style="font-size: 32px"></i>
+									</div>
+									<div class="title">Unread Messages</div>
+									<div class="count">{{ noticecount }}</div>
+								</a>
+								<div class="dropdown-menu">
+									<ul>
+										<li class="dropdown-header">最新通知</li>
+										<li>
+											<a href="#">
+												<div class="message">
+													<div class="content">
+														<div class="title">{{ somenotice.p_content }}</div>
+														<div class="description">{{ somenotice.p_name }}</div>
+													</div>
+												</div>
+											</a>
+										</li>
+										<li class="dropdown-footer">
+											<a href="/notice/">查看所有通知</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+				
+							<li class="dropdown notification danger">
+								<a href="/message/" class="dropdown-toggle">
+									<div class="icon">
+										<i class="iconfont icon-message" style="font-size: 32px"></i>
+									</div>
+									<div class="count">{{ messageself }}</div>
+								</a>
+								<div class="dropdown-menu">
+									<ul>
+										<li class="dropdown-header">最新消息</li>
+										<li>
+											<a href="#">
+												<div class="message">
+												<div class="content">
+													{% if useridtype == '0' %}
+													<div class="title">{{ somemessage.s_name }}</div>
+													{% else %}
+													<div class="title">{{ somemessage.t_name }}</div>
+													{% endif %}
+													<div class="description">{{ somemessage.content }}</div>
+												</div>
+												</div>
+											</a>
+										</li>
+										<li class="dropdown-footer">
+											<a href="/message/">查看所有消息</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+								
+							{% endif %}
+						</ul>
+						</div>
+					</div>
+					</nav>
+
+	<div class="btn-floating" id="help-actions">
+	<div class="btn-bg"></div>
+	<button type="button" class="btn btn-default btn-toggle">
+		<i class="icon fa fa-plus"></i>
+		<span class="help-text">Shortcut</span>
+	</button>
+	<div class="toggle-content">
+		<ul class="actions">
+		<li><a href="upload/">上传文件</a></li>
+		<li><a href="#">Documentation</a></li>
+		<li><a href="#">Issues</a></li>
+		<li><a href="#">About</a></li>
+		</ul>
+	</div>
+	</div>
+
+	<div class="row">
+	<div class="col-xs-12">
+		<div class="card card-banner card-chart card-green no-br">
+		<div class="card-header">
+			<div class="card-title">
+				<div class="title" style="color: #000"><span style="color:#DE0000 ">提示</span> :在下方重新编辑您的课程表。</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="ct-chart-sale"></div>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="container">
+			<ul class="seoption">
+				<span>您可以选择的课程：</span>
+				{% for i in courselist %}
+				<li class="deoption">{{ i.coursename }}</li>
+				{% endfor %}
+			</ul>
+		<center>
+				<h1  align="center"><b><caption>课程表</caption></b></h1>
+				<body text="#000000">
+				<form action="/reedtioncurriculum/" method="POST">
+				<table style="color:#000"width="1200" height="480" border="1" background="Hydrangeas.jpg">
+					<tr>
+						<td width="76"> </td>
+						<td width="86" height="50"> </td>
+						<td width="100">周一</td>
+						<td width="100">周二</td>
+						<td width="100">周三</td>
+						<td width="100">周四</td>
+						<td width="100">周五</td>
+						<td width="100">周六</td>
+						<td width="108">周日</td>
+					</tr>
+					<tr>
+						
+						<td rowspan="4">上午</td>
+						
+						<td rowspan="2">1</td>
+						<td rowspan="2">
+							<select name="monday_1">
+							{% for i in courselist %}
+							<option>{{ i.coursename }}</option>
+							{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="tuesday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="wednesday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="thursday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="friday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="saturday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="sunday_1">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+					</tr>
+					<tr>
+						<td rowspan="2">2</td>
+						<td rowspan="2">
+							<select name="monday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+								</select>
+						</td>
+						<td rowspan="2">
+							<select name="tuesday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="wednesday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="thursday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="friday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="saturday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="sunday_2">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+					</tr>
+					<tr>
+					<td colspan="9" align="center"><b>午休</b></td>
+					</tr>
+					<tr>
+						<td rowspan="4">下午</td>
+						<td rowspan="2">3</td>
+						<td rowspan="2">
+							<select name="monday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+								</select>
+						</td>
+						<td rowspan="2">
+							<select name="tuesday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="wednesday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="thursday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="friday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="saturday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+						<td rowspan="2">
+							<select name="sunday_3">
+								{% for i in courselist %}
+								<option>{{ i.coursename }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+					</tr>
+					<tr>
+							<td rowspan="2">4</td>
+							<td rowspan="2">
+								<select name="monday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+									</select>
+							</td>
+							<td rowspan="2">
+								<select name="tuesday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td rowspan="2">
+								<select name="wednesday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td rowspan="2">
+								<select name="thursday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td rowspan="2">
+								<select name="friday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td rowspan="2">
+								<select name="saturday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+							<td rowspan="2">
+								<select name="sunday_4">
+									{% for i in courselist %}
+									<option>{{ i.coursename }}</option>
+									{% endfor %}
+								</select>
+							</td>
+					</tr>
+				</table>
+					<input type="submit" value="提交" id='submit'>
+					<a href="/Mycurriculum/">
+						<button id='back'>返回</button>
+					</a>
+				</form>
+				</center>
+	</div>
+
+	</div>
+	</div>
+	</body>
+	</html>

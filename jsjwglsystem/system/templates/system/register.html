@@ -1,0 +1,157 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>西南大学教师教务管理系统·注册</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/flat-admin.css' %}">
+
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/blue-sky.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/blue.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/red.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/yellow.css' %}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1347375_rw5tk45yi4.css">
+    <link rel="stylesheet" href="{% static 'media/js/jquery.js' %}">
+
+    </head>
+    <style>
+        #errorstip{
+            color: red;
+        }
+    </style>
+    <body>
+    <div class="app app-default">
+
+    <div class="app-container app-login">
+    <div class="flex-center">
+        <div class="app-header"></div>
+        <div class="app-body">
+        <div class="loader-container text-center">
+            <div class="icon">
+                <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+                </div>
+            <div class="title">Logging in...</div>
+        </div>
+        <div class="app-block">
+            <div class="app-right-section">
+            <div class="app-brand"><span class="highlight">教务</span>管理平台</div>
+            <div class="app-info">
+                
+                <ul class="list">
+                <li>
+                    <div class="icon">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="title"><b>高效</b></div>
+                </li>
+                <li>
+                    <div class="icon">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    </div>
+                    <div class="title"><b>免费</b></div>
+                </li>
+                <li>
+                    <div class="icon">
+                    <i class="fa fa-usd" aria-hidden="true"></i>
+                    </div>
+                    <div class="title"><b>开源</b></div>
+                </li>
+                </ul>
+            </div>
+            </div>
+            <div class="app-form">
+            <div class="form-suggestion">
+                欢迎注册!
+            </div>
+            <form action="/register/" method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                    <i class="iconfont icon-xingmingyonghumingnicheng"></i>
+                    </span>
+                    {{ form.username }}
+                    <span id="errorstip">{{ errors.username.0 }}</span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2">
+                        <i class="iconfont icon-lock"></i>
+                    </span>
+                    
+                    {{ form.password }}
+                    <span id="errorstip">{{ errors.password.0 }}</span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon3">
+                        <i class="iconfont icon-xingbie"></i>
+                    </span>
+                    
+                        <input type="radio" name="sex" value="0">男
+                        <input type="radio" name="sex" value="1">女
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">
+                        <i class="iconfont icon-shenfen"></i>
+                    </span>
+                    
+                    <input type="radio" name="idtype" value="0">教师
+                    <input type="radio" name="idtype" value="1">学生
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">
+                        <i class="iconfont icon-Idcard"></i>
+                    </span>
+                    工号或学号：<input type="text" name="userid">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">
+                        <i class="iconfont icon-mail"></i>
+                    </span>
+                    {{ form.email }}
+                    <span id="errorstip">{{ errors.email.0 }}</span>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">
+                        <i class="iconfont icon-mail"></i>
+                    </span>
+                    {{ form.captcha }}
+                    <span id="errorstip">{{ errors.captcha.0 }}</span>
+                </div>
+                
+                <input type="submit" class="btn btn-success btn-submit">
+            </form>
+            <div class="form-footer">
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="app-footer">
+        </div>
+    </div>
+    </div>
+    </div>
+    </body>
+    <script>
+        $(".captcha").click(function(){
+        $.ajax({
+            url:"/captcha/refresh/",
+            dataType:"json",
+            success:function(e){
+                $(".captcha").attr("src",e['image_url'])
+                $("#id_captcha_0").val(e['key'])
+            }
+        })
+    })
+    </script>
+    </html>

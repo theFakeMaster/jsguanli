@@ -1,0 +1,34 @@
+/* 头部 */
+header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 12px 24px;
+}
+.imgjieshao{
+    display: flex;
+}
+.mingzicaozuo{
+    display: flex;
+    line-height: 90px;
+}
+#schoollogo{
+    width: 330px;
+    height: 90px;
+}
+#b_afterimg{
+    height: 90px;
+}
+#afterimg{
+    font-size: 28px;
+    line-height: 90px;
+    font-style: italic;
+    margin-left: 8px;
+}
+#a_login{
+    height: 90px;
+}
+#a_login a{
+    line-height: 90px;
+}
+/* 头部 */

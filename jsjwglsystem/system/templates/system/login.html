@@ -1,0 +1,87 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>教师教务管理系统·登陆</title>
+	
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'media/css/base.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/vendor.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/flat-admin.css' %}">
+	
+		<!-- Theme -->
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/blue-sky.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/blue.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/red.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'media/css/yellow.css' %}">
+		<link rel="stylesheet" href="{% static 'media/js/jquery.js' %}">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1347375_rw5tk45yi4.css">
+
+	</head>
+	<body>
+	<div class="app app-default">
+
+	<div class="app-container app-login">
+	<div class="flex-center">
+		<div class="app-header"></div>
+		<div class="app-body">
+		<div class="loader-container text-center">
+			<div class="icon">
+				<div class="sk-folding-cube">
+					<div class="sk-cube1 sk-cube"></div>
+					<div class="sk-cube2 sk-cube"></div>
+					<div class="sk-cube4 sk-cube"></div>
+					<div class="sk-cube3 sk-cube"></div>
+				</div>
+				</div>
+			<div class="title">Logging in...</div>
+		</div>
+		<div class="app-block">
+		<div class="app-form">
+			<div class="form-header">
+			<div class="app-brand"><span class="highlight">教务</span>管理平台</div>
+			</div>
+			<form action="/login/" method="POST">
+				{% csrf_token %}
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">
+						<i class="iconfont icon-xingmingyonghumingnicheng"></i>
+					</span>
+					{{ form.username }}
+					<span id="errorstip">{{ errors.username.0 }}</span>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon2">
+						<i class="iconfont icon-mima54"></i>
+					</span>
+					{{ form.password }}
+					<span id="errorstip">{{ errors.password.0 }}</span>
+				</div>
+				<div class="text-center">
+					<input type="submit" class="btn btn-success btn-submit" value="登陆">
+				</div>
+			</form>
+
+			<div class="form-line">
+			<div class="title">或</div>
+			</div>
+			<div class="form-footer">
+			<button type="button" class="btn btn-default btn-sm btn-social __facebook">
+				<div class="info">
+					<a href="/register/" style="color: #fff;">
+						<span class="title">注册</span>
+					</a>
+				</div>
+			</button>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="app-footer">
+		</div>
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>

@@ -1,0 +1,118 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 12px 24px;
+}
+.imgjieshao{
+    display: flex;
+}
+.mingzicaozuo{
+    display: flex;
+    line-height: 90px;
+}
+#schoollogo{
+    width: 330px;
+    height: 90px;
+}
+#b_afterimg{
+    height: 90px;
+}
+#afterimg{
+    font-size: 28px;
+    line-height: 90px;
+    font-style: italic;
+    margin-left: 8px;
+}
+.daohang{
+    display: flex;
+    height: 60px;
+    background-color: #2277FF;
+    border-top: solid 2px #2233FF;
+}
+.daohang li a{
+    width: 80px;
+    color: #fff;
+    margin: 0 8px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 60px;
+}
+.gongnengqu{
+    height: 800px;
+    padding: 18px 320px;
+}
+#gongnengqu-t{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 12px;
+}
+#gongnengqu-b{
+    display: flex;
+    justify-content: space-around;
+}
+#gongnengqu-t-c{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#jiaoshiinfo{
+    width: 400px;
+    height: 400px;
+    background-color: #0961A0;
+}
+#gerenkebiao{
+    width: 200px;
+    height: 400px;
+    background-color: #50B5C7;
+}
+#jiaoxuezhouli{
+    width: 190px;
+    height: 190px;
+    background-color: #1A78D8;
+}
+#changjiluru{
+    width: 190px;
+    height: 190px;
+    background-color: #90A8E4;
+}
+#yishouliuyan{
+    width: 400px;
+    height: 190px;
+    background-color: #DC6988;
+}
+#yishougonggao{
+    width: 400px;
+    height: 190px;
+    background-color: #8D79AA;
+}
+#shengjidengfence{
+    width: 190px;
+    height: 190px;
+    background-color: #187D9B;
+}
+#xushengpinjiao{
+    width: 190px;
+    height: 190px;
+    background-color: #A0CF41;
+}
+#jiaoxueshoulichaxun{
+    width: 190px;
+    height: 190px;
+    background-color: #EAAF77;
+}
+#gerekebiaoxinxi{
+    width: 190px;
+    height: 190px;
+    background-color: #88BBDA;
+}
+#zhuyepeyangfangan{
+    width: 190px;
+    height: 190px;
+    background-color: #B69CCC;
+}
+#kaowuanpaichaxun{
+    width: 190px;
+    height: 190px;
+    background-color: #0961A0;
+}

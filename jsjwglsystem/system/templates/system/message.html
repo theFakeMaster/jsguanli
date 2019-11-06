@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>教务管理平台·消息</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+    <link rel="stylesheet" href="{% static 'media/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/flat-admin.css' %}">
+
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/blue-sky.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/blue.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/red.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'media/css/yellow.css' %}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1347375_rw5tk45yi4.css">
+    <script type='text/javascript' src="{% static 'media/js/jquery.js' %}"></script>
+    <script type='text/javascript' src="{% static 'media/js/vendor.js' %}"></script>
+    <script type='text/javascript' src="{% static 'media/js/app.js' %}"></script>
+
+</head>
+<body>
+<style>
+    .cactive{
+        background-color: #E7EDEE; 
+        padding: 0px; 
+        border-bottom: 1px solid #dfe6e8;
+    }
+</style>
+<div class="app app-default">
+<aside class="app-sidebar" id="sidebar">
+<div class="sidebar-header">
+    <a class="sidebar-brand" href="#"><span class="highlight">教务</span>管理平台</a>
+    <button type="button" class="sidebar-toggle">
+    <i class="fa fa-times"></i>
+    </button>
+</div>
+<div class="sidebar-menu">
+        <ul class="sidebar-nav">
+        <li class="@@menu.messaging">
+            <a href="/">
+            <div class="icon">
+                <i class="iconfont icon-home" style="font-size: 40px"></i>
+            </div>
+            <div class="title">主页</div>
+            </a>
+        </li>
+        <li class="@@menu.messaging">
+            <a href="/upload/">
+            <div class="icon">
+                <i class="iconfont icon-upload" style="font-size: 40px"></i>
+            </div>
+            <div class="title">上传文件</div>
+            </a>
+        </li>
+        <li class="@@menu.messaging">
+            <a href="/Filelibrary/">
+                <div class="icon">
+                    <i class="iconfont icon-folder" style="font-size: 40px"></i>
+                </div>
+                <div class="title">文件库</div>
+            </a>
+        </li>
+        <li class="dropdown active">
+                <a href="">
+                    <div class="icon">
+                        <i class="iconfont icon-message" style="font-size: 40px"></i>
+                    </div>
+                    <div class="title">留言</div>
+                </a>
+                <div class="dropdown-menu">
+                    <ul>
+                        <li><a href="/message/">查看留言</a></li>
+                        <li><a href="/edmessage/">编辑留言</a></li>
+                    </ul>
+                </div>
+            </li>
+        <li class="@@menu.messaging">
+            <a href="/Mycurriculum/">
+                <div class="icon">
+                    <i class="iconfont icon-file" style="font-size: 40px"></i>
+                </div>
+                <div class="title">课程表</div>
+            </a>
+        </li>
+        <li class="@@menu.messaging">
+            <a href="/notice/">
+                <div class="icon">
+                    <i class="iconfont icon-mail" style="font-size: 40px"></i>
+                </div>
+                <div class="title">通知</div>
+            </a>
+        </li>
+        <li class="@@menu.messaging">
+            <a href="/news/">
+                <div class="icon">
+                    <i class="iconfont icon-browser" style="font-size: 40px"></i>
+                </div>
+                <div class="title">新闻</div>
+            </a>
+        </li>
+        </ul>
+    </div>
+<div class="sidebar-footer">
+    <ul class="menu">
+    <li>
+        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-cogs" aria-hidden="true"></i>
+        </a>
+    </li>
+    <li><a href="#"><span class="flag-icon flag-icon-th flag-icon-squared"></span></a></li>
+    </ul>
+</div>
+</aside>
+
+<script type="text/ng-template" id="sidebar-dropdown.tpl.html">
+<div class="dropdown-background">
+    <div class="bg"></div>
+</div>
+<div class="dropdown-container">
+    {{list}}
+</div>
+</script>
+<div class="app-container app-full">
+
+        <nav class="navbar navbar-default" id="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-collapse collapse in">
+                    <ul class="nav navbar-nav navbar-mobile">
+                        <li>
+                        <button type="button" class="sidebar-toggle">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        </li>
+                        <li class="logo">
+                        <a class="navbar-brand" href="#"><span class="highlight">教务</span>管理平台</a>
+                        </li>
+                        <li>
+                        <button type="button" class="navbar-toggle">
+                            <img class="profile-img" src="">
+                        </button>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if username == '' and is_staff == False %}
+                        <li><a href="/login">登陆</a></li>
+                        <li><a href="/register">注册</a></li>
+                        {% elif is_staff == True %}
+                        <li class="dropdown profile">
+                            <a href="/xadmin">{{ username }}</a>
+                            <div class="dropdown-menu">
+                                <div class="profile-info">
+                                    <h4 class="username">{{ username }}</h4>
+                                </div>
+                                <ul class="action">
+                                    <li>
+                                        <a href="#">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="badge badge-danger pull-right">5</span>My Inbox</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Setting</a>
+                                    </li>
+                                    <li>
+                                        <a href="/loginout">退出登陆</a>
+                                    </li>
+                                </ul>
+                                </div>
+                        </li>
+            
+                        {% elif is_staff == False %}
+                        <li class="dropdown profile">
+                            <a href="/personinfo/">{{ username }}</a>
+                            <div class="dropdown-menu">
+                                <div class="profile-info">
+                                    <h4 class="username">{{ username }}</h4>
+                                </div>
+                                <ul class="action">
+                                    <li>
+                                        <a href="#">Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="badge badge-danger pull-right">5</span>My Inbox</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Setting</a>
+                                    </li>
+                                    <li>
+                                        <a href="/loginout">退出登陆</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                                
+                        <li class="dropdown notification">
+                            <a href="/news/" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="iconfont icon-browser" style="font-size: 32px"></i>
+                                </div>
+                                <div class="title">New Orders</div>
+                                <div class="count">{{ newcount }}</div>
+                            </a>
+                            <div class="dropdown-menu">
+                                <ul>
+                                     
+                                    <li class="dropdown-header">最新新闻</li>
+                                    <li class="dropdown-empty">{{ somenew.news_content }}</li>
+                                    <li class="dropdown-footer">
+                                        <a href="/news/">查看全部新闻</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+            
+                        <li class="dropdown notification warning">
+                            <a href="/notice/" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="iconfont icon-mail" style="font-size: 32px"></i>
+                                </div>
+                                <div class="title">Unread Messages</div>
+                                <div class="count">{{ noticecount }}</div>
+                            </a>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li class="dropdown-header">最新通知</li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="message">
+                                                <div class="content">
+                                                    <div class="title">{{ somenotice.p_content }}</div>
+                                                    <div class="description">{{ somenotice.p_name }}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-footer">
+                                        <a href="/notice/">查看所有通知</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+            
+                        <li class="dropdown notification danger">
+                            <a href="/message/" class="dropdown-toggle">
+                                <div class="icon">
+                                    <i class="iconfont icon-message" style="font-size: 32px"></i>
+                                </div>
+                                <div class="count">{{ messageself }}</div>
+                            </a>
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li class="dropdown-header">最新消息</li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="message">
+                                            <div class="content">
+                                                {% if useridtype == '0' %}
+                                                <div class="title">{{ somemessage.s_name }}</div>
+                                                {% else %}
+                                                <div class="title">{{ somemessage.t_name }}</div>
+                                                {% endif %}
+                                                <div class="description">{{ somemessage.content }}</div>
+                                            </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown-footer">
+                                        <a href="/message/">查看所有消息</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                            
+                        {% endif %}
+                    </ul>
+                    </div>
+                </div>
+                </nav>
+
+<div class="app-messaging-container">
+    <div class="app-messaging" id="collapseMessaging">
+    <div class="chat-group">
+        <div class="heading">联系人列表</div>
+        <ul class="group full-height">
+            {% if useridtype == '0' %}
+                {% for i in student_all %}
+                    <li class="message">
+                        <span class="badge badge-warning pull-right">10</span>
+                        <div class="message">
+                            <img class="profile" src="https://placehold.it/100x100">
+                            <div class="content">
+                                <div class="title">{{ i.name }}</div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                {% for i in teacher_all %}
+                    <li class="message">
+                        <span class="badge badge-warning pull-right">10</span>
+                        <div class="message">
+                            <img class="profile" src="https://placehold.it/100x100">
+                            <div class="content">
+                                <div class="title">{{ i.name }}</div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            {%endif%}
+        </ul>
+        
+    </div>
+    <div class="messaging">
+        <div class="heading">
+        <div class="title"></div>
+        <div class="action"></div>
+        </div>
+        
+        <ul class="chat">
+            
+        <li class="line"></li>
+
+        {% if useridtype == '0' %}
+            {% for i in messages_2 %}
+                {% if i.direction == '1' %}
+                <li class="right">
+                        <div class="message">{{ i.content }}</div>
+                        <div class="info">
+                            <div class="title">{{ i.date }}</div>
+                            <div class="datetime">{{ i.time }}</div>
+                        </div>
+                    </li>
+                {% else %}
+                    <li>
+                        <div class="message">{{ i.content }}</div>
+                        <div class="info">
+                            <div class="title">{{ i.date }}</div>
+                            <div class="datetime">{{ i.time }}</div>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for i in messages_2 %}         
+                {% if i.direction == '1' %}
+                <li>
+                    <div class="message">{{ i.content }}</div>
+                    <div class="info">
+                        <div class="title">{{ i.date }}</div>
+                        <div class="datetime">{{ i.time }}</div>
+                    </div>
+                </li>
+                {% else %}
+                <li class="right">
+                    <div class="message">{{ i.content }}</div>
+                    <div class="info">
+                        <div class="title">{{ i.date }}</div>
+                        <div class="datetime">{{ i.time }}</div>
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        </ul>
+        
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script>
+
+    let message = $('.full-height li.message')
+    let messagetitle = $('.messaging .heading .title')
+    
+    message.each(function(i){
+        message.eq(i).click(function(){
+            message.eq(i).removeClass('message').addClass('cactive')
+            message.not(message.eq(i)).removeClass('cactive').addClass('message')
+            messagetitle.empty()
+            messagetitle.append(message.eq(i).children('.message').children('.content').children('.title').text())
+            messageed = message.eq(i).children('.message').children('.content').children('.title').text()
+            
+            $.ajax({
+            type: "GET",
+            url: "/message/",
+            data: {
+                messageed:messageed,
+            },
+            success: function (messageed) {
+                messageed = message.eq(i).children('.message').children('.content').children('.title').text()
+                window.location.href = "/message/?messageed="+messageed
+            }
+        });
+        })
+    })
+
+        
+
+
+</script>
+</html>
